@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+OpenIDE-Module-Name: NetExpo
+OpenIDE-Module-Short-Description: Gephi plugin to compute network and ad affiliation exposure
+OpenIDE-Module-Long-Description: Gephi plugin to calculate network k exposure and affiliation exposure from matrix data.
+OpenIDE-Module-Display-Category: Metric
