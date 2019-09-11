@@ -26,6 +26,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
+import netexpo.report.Reporter;
 import org.gephi.graph.api.Column;
 import org.gephi.graph.api.Edge;
 import org.gephi.graph.api.Graph;
@@ -352,10 +353,10 @@ public class NetExpoPanel extends javax.swing.JPanel {
                                 .addComponent(affnetAttributeComboBox, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel10, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel3)
                             .addComponent(jLabel7)
                             .addComponent(jLabel5)
-                            .addComponent(provideOffDiagonalValues))
+                            .addComponent(provideOffDiagonalValues)
+                            .addComponent(jLabel3, GroupLayout.PREFERRED_SIZE, 504, GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -451,9 +452,11 @@ public class NetExpoPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(de_column_exposure_name, GroupLayout.PREFERRED_SIZE, 357, GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
                             .addComponent(cbDecomposedExposure)
                             .addComponent(jLabel14)
                             .addComponent(c1Attribute_1, GroupLayout.PREFERRED_SIZE, 309, GroupLayout.PREFERRED_SIZE)
@@ -465,11 +468,9 @@ public class NetExpoPanel extends javax.swing.JPanel {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(deAttributeComboBox, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel17, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 381, Short.MAX_VALUE))
-                    .addGroup(GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(de_column_exposure_name, GroupLayout.PREFERRED_SIZE, 357, GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel17, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel11, GroupLayout.PREFERRED_SIZE, 661, GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 145, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -581,6 +582,8 @@ public class NetExpoPanel extends javax.swing.JPanel {
             twoModeComboBox.setEnabled(false);
         }
         
+        Reporter.getInstance().setAffiliationExposureActive(this.affExposureCheckBox.isSelected());
+        
     }//GEN-LAST:event_onCheckAffExpo
 
     private void networkExposureCheckBoxActionPerformed(ActionEvent evt) {//GEN-FIRST:event_networkExposureCheckBoxActionPerformed
@@ -605,7 +608,7 @@ public class NetExpoPanel extends javax.swing.JPanel {
             netExpoColumnInput.setEnabled(false);
         }
         
-
+        Reporter.getInstance().setNetworkExposureActive(networkExposureCheckBox.isSelected());
 
     }//GEN-LAST:event_networkExposureCheckBoxActionPerformed
 
@@ -636,6 +639,7 @@ public class NetExpoPanel extends javax.swing.JPanel {
                 System.out.println("Selected: " + selectItem);
                 
                 twoModeColumn = selectItem;
+                Reporter.getInstance().setTwoModeNodeAttribute(twoModeColumn);
                 
                 Node[] nodes = graph.getNodes().toArray();
                 Set<String> choices = new HashSet<String>();
@@ -663,7 +667,7 @@ public class NetExpoPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         if(primaryValueComboBox.getSelectedIndex()>-1){
             this.twoModeValue = (String)primaryValueComboBox.getSelectedItem();
-            
+            Reporter.getInstance().setValueForTwoMode(this.twoModeValue);
         }
     }//GEN-LAST:event_primaryValueComboBoxActionPerformed
 
@@ -671,12 +675,16 @@ public class NetExpoPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
                 
         netExpoColumnInput.setText("net_expo_score_" + evt.getItem().toString());
+        
+        Reporter.getInstance().setNetworkExposureAttribute(evt.getItem().toString());
+        
     }//GEN-LAST:event_netexpoAttributeComboBoxItemStateChanged
 
     private void affnetAttributeComboBoxItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_affnetAttributeComboBoxItemStateChanged
         // TODO add your handling code here:
         
         affexpColumnInput.setText("aff_expo_score_" + evt.getItem().toString());
+        Reporter.getInstance().setAffiliationExposureAttribute(evt.getItem().toString());
         
     }//GEN-LAST:event_affnetAttributeComboBoxItemStateChanged
 
@@ -720,6 +728,8 @@ public class NetExpoPanel extends javax.swing.JPanel {
             this.de_column_exposure_name.setEnabled(false);
             this.de_column_exposure_name.setText("");
         }
+        
+       Reporter.getInstance().setDecomposedExposedActive(this.cbDecomposedExposure.isSelected());
     }//GEN-LAST:event_cbDecomposedExposureActionPerformed
 
     private void c1Attribute_1ItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_c1Attribute_1ItemStateChanged
@@ -778,6 +788,8 @@ public class NetExpoPanel extends javax.swing.JPanel {
         if(deAttributeComboBox.getSelectedItem() !=null && 
                 this.de_column_exposure_name.isEnabled()){
             de_column_exposure_name.setText("decomp_" + deAttributeComboBox.getSelectedItem().toString());
+            
+            Reporter.getInstance().setDecomposedExposedAttribute(deAttributeComboBox.getSelectedItem().toString());
         }
     }//GEN-LAST:event_deAttributeComboBoxActionPerformed
 

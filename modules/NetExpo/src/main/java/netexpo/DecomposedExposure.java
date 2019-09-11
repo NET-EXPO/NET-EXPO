@@ -210,7 +210,12 @@ public class DecomposedExposure extends ExposureComputation {
         SimpleMatrix numerator = sm.mult(attribute_matrix);
         SimpleMatrix expo = numerator.elementDiv(nomination_matrix);
         
-       
+        /*
+        try {
+            expo.saveToFileCSV("expo.csv");
+        } catch (IOException ex) {
+            Exceptions.printStackTrace(ex);
+        }*/
         
         DecimalFormat df = new DecimalFormat("#0.0000");
         
@@ -241,7 +246,8 @@ public class DecomposedExposure extends ExposureComputation {
             }
         }
 
-       
+        System.out.println("primary size: " + primaryNodes_c2.size());
+        System.out.println("secondary size: " + secondaryNodes_c2.size());
 
         double[][] a = new double[primaryNodes_c2.size()][secondaryNodes_c2.size()];
 
@@ -264,7 +270,23 @@ public class DecomposedExposure extends ExposureComputation {
 
         return c2_matrix;
         
-        
+        /*
+        SimpleMatrix a_prime_matrix = new SimpleMatrix(a_matrix.transpose());
+        a_prime_matrix.print();
+
+        SimpleMatrix c_matrix = a_matrix.mult(a_prime_matrix);
+        c_matrix.print();
+
+        //gut out that diagnol
+        assert (c_matrix.numCols() == c_matrix.numRows());
+        for (int i = 0; i < c_matrix.numRows(); i++) {
+            c_matrix.set(i, i, 0);
+        }
+        System.out.println("---- c matrix diagonal -----");
+        c_matrix.print();
+
+        return c_matrix;*/
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
         
@@ -308,7 +330,23 @@ public class DecomposedExposure extends ExposureComputation {
 
         
         return c1_matrix;
-        
+        /*
+        SimpleMatrix a_prime_matrix = new SimpleMatrix(a_matrix.transpose());
+        a_prime_matrix.print();
+
+        SimpleMatrix c_matrix = a_matrix.mult(a_prime_matrix);
+        c_matrix.print();
+
+        //gut out that diagnol
+        assert (c_matrix.numCols() == c_matrix.numRows());
+        for (int i = 0; i < c_matrix.numRows(); i++) {
+            c_matrix.set(i, i, 0);
+        }
+        System.out.println("---- c matrix diagonal -----");
+        c_matrix.print();
+
+        return c_matrix;*/
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

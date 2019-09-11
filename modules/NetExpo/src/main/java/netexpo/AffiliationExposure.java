@@ -82,7 +82,7 @@ public class AffiliationExposure extends ExposureComputation {
         SimpleMatrix c_matrix = a_matrix.mult(a_prime_matrix);
         c_matrix.print();
         
-        
+        //gut out that diagnol
         assert(c_matrix.numCols() == c_matrix.numRows());
         for(int i=0;i<c_matrix.numRows();i++){
             c_matrix.set(i, i, 0);
@@ -134,7 +134,7 @@ public class AffiliationExposure extends ExposureComputation {
 
     @Override
     public void computeExposure(Graph graph, Column attribute, String exposureColumn) {
-        
+        //Node[] nodes = graph.getNodes().toArray();
         
         
 
@@ -198,11 +198,11 @@ public class AffiliationExposure extends ExposureComputation {
           }
         }
 
-        
+        //expo.print();
     }
 
     public void setupOffDiagonalColumn(Table edgeTable) {
-        
+        //this.edgeTable = edgeTable;
         edgeTable.addColumn("off_diagonal", Double.TYPE);
         calculateOffDiagonal = true;
     }

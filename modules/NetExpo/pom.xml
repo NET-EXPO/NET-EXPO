@@ -9,7 +9,7 @@
 
     <groupId>edu.tmc.uth.sbmi</groupId>
     <artifactId>netexpo</artifactId>
-    <version>0.0.1</version>
+    <version>0.5.0</version>
     <packaging>nbm</packaging>
 
     <name>NetExpo</name>

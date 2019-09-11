@@ -32,7 +32,7 @@ public class NetworkExposure extends ExposureComputation{
 
     @Override
     public void computeExposure(Graph graph, Column attribute, String exposureColumn) {
-        
+        System.out.println("Starting calculation for NE");
 
         //convert to matrix
         Node[] nodes = graph.getNodes().toArray();
@@ -66,7 +66,7 @@ public class NetworkExposure extends ExposureComputation{
             nomination_vector[x][0] = num_nom;
         }
 
-        //System.out.println("starting simple matrix...");
+        System.out.println("starting simple matrix...");
 
         SimpleMatrix network_matrix = new SimpleMatrix(network_matrix_data);
         SimpleMatrix attribute_matrix = new SimpleMatrix(attribute_vector);
@@ -90,7 +90,7 @@ public class NetworkExposure extends ExposureComputation{
             
         }
         
-        
+        System.out.println("Ending NE");
     }
 
 }

@@ -9,6 +9,7 @@ package netexpo;
  *
  * @author mac
  */
+import netexpo.report.Reporter;
 import org.gephi.graph.api.Column;
 import org.gephi.graph.api.Graph;
 import org.gephi.graph.api.GraphController;
@@ -48,7 +49,7 @@ public class NetExpo implements Statistics {
 
     public void setNetworkExposureAttribute(String attribute) {
 
-        
+        //System.out.println("got network exposure attribute at netexp.java");
 
         GraphController graphController = Lookup.getDefault().lookup(GraphController.class);
         Table nodeTable = graphController.getGraphModel().getNodeTable();
@@ -165,9 +166,26 @@ public class NetExpo implements Statistics {
 
     @Override
     public String getReport() {
-        String report = "<HTML> <BODY> <h1>Network Exposure</h1> "
+        
+        
+        String report = "<HTML> <BODY> <h1>NET-EXPO REPORT</h1> "
                 + "<hr>"
-                + "<br> No global results to show"
+                + "<br>"
+                + "<h2>Network Exposure Model</h2>"
+                + Reporter.getInstance().printNetworkExposureParameters()
+                + "<h2>Affiliation Exposure Model</h2>"
+                + Reporter.getInstance().printAffiliationExposureParameters()
+                + "<h2>Decomposed Exposure Model</h2>"
+                + Reporter.getInstance().printDecomposedExposureParameters()
+                + "<h2>References</h2>"
+                + "<h3>Network Exposure Model</h3>"
+                + "<p>Valente, T.W.: Network models of the diffusion of innovations. Computational & Mathematical Organization Theory 2(2) (1996) 163–164</p>"
+                + "<p>Valente, T.W.: Network models and methods for studying the diffusion of innovations. Models and methods in social network analysis 28 (2005) 98</p>"
+                + "<h3>Affiliation Exposure Model</h3>"
+                + "<p>Fujimoto, K., Chou, C.P., Valente, T.W.: The Network Autocorrelation Model using Two-mode Data: Affiliation Exposure and Potential Bias in the Autocorrelation Parameter. Social networks 33(3) (July 2011) 231–243</p>"
+                + "<p>Fujimoto, K., Unger, J.B., Valente, T.W.: A network method of measuring affiliation-based peer influence: Assessing the influences of teammates’ smoking on adolescent smoking. Child Development 83(2) (2012) 442–451</p>"
+                + "<h3>Decomposed Exposure Model</h3>"
+                + "<p>Fujimoto,K.,Wang,P.,Valente,T.W.:The decomposed affiliation exposure model: A network approach to segregating peer influences from crowds and organized sports. Network Science 1(2) (2013) 154–169</p>"
                 + "<br />"
                 + "</BODY></HTML>";
         return report;

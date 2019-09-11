@@ -6,6 +6,7 @@
 package netexpo;
 
 import javax.swing.JPanel;
+import netexpo.report.Reporter;
 import org.gephi.statistics.spi.Statistics;
 import org.gephi.statistics.spi.StatisticsUI;
 import org.openide.util.lookup.ServiceProvider;
@@ -49,6 +50,7 @@ public class NetExpoUI implements StatisticsUI {
             statistics.setAffiliationExposureAttribute(panel.getSelectedAffiliationExposureAttribute());
             
             statistics.setUserOffDiagonalChoice( panel.getUserOffDiagonalValuesChoice() );
+            Reporter.getInstance().setWantsOffDiagnonalValues(panel.getUserOffDiagonalValuesChoice());
             
             statistics.setUserDefinedColumns(
                     panel.getUserNetExpoColumn(),
@@ -56,7 +58,17 @@ public class NetExpoUI implements StatisticsUI {
                     panel.getUserDecompExpoColumn()
             );
             
+            //add user defined exposure columns to the reporter
+            Reporter.getInstance().setNetworkExposureColumn(panel.getUserNetExpoColumn());
+            Reporter.getInstance().setAffiliationExposureColumn(panel.getUserAffExpoColumn());
+            Reporter.getInstance().setDecomposedExposedColumn(panel.getUserDecompExpoColumn());
+            
+            
             statistics.setDecomposedMatrices(panel.getCMatrixColumn(),panel.getC1Attribute(), panel.getC2Attribute());
+            Reporter.getInstance().setCMatrixColumn(panel.getCMatrixColumn());
+            Reporter.getInstance().setC1Value(panel.getC1Attribute());
+            Reporter.getInstance().setC2Value(panel.getC2Attribute());
+            
             statistics.setDecompositionExposureAttribute(panel.getSelectedDecompositionExposureAttribute());
             
         }
