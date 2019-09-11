@@ -2,8 +2,8 @@
 
 NET-EXPO is a Gelphi plugin that computes various types of network exposure metrics for the purpose of visualization exposure within a network for analysis. Currently network exposure model (Marsden, et al. 1993, Burt, 1987, Valente, 1996, 2005), affiliation exposure model (Fujimoto, et al., 2011, 2012), and limited support for decomposition exposure model (Fujimoto, 2012, Fujimoto, et al., 2013) are supported.
 
-##Download
-[click here][https://github.com/UTH-Tuan/NET-EXPO/releases/download/v0.5beta/netexpo-0.5.0.nbm]
+## Download
+https://github.com/UTH-Tuan/NET-EXPO/releases/download/v0.5beta/netexpo-0.5.0.nbm
 
 ## CITATIONS
 Amith M.., Fujimoto K., Tao C. (2019) NET-EXPO: A Gephi Plugin Towards Social Network Analysis of Network Exposure for Unipartite and Bipartite Graphs. In: Stephanidis C. (eds) HCI International 2019 - Posters. HCII 2019. Communications in Computer and Information Science, vol 1034. Springer, Cham
